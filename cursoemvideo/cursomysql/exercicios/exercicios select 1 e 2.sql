@@ -1,0 +1,81 @@
+-- EXERCÍCIOS SELECT
+
+USE cadastro;
+
+SELECT * FROM gafanhotos;
+
+-- EXERCÍCIO 01
+
+-- LISTA COM NOME DE TODAS AS MULHERES
+
+SELECT nome,sexo
+FROM gafanhotos
+WHERE sexo = 'F'
+ORDER BY nome;
+
+-- EXERCÍCIO 02
+
+-- LISTA COM OS DADOS DE TODOS AQUELES QUE NASCERAM ENTRE 01/01/2000 E 31/12/2015
+
+SELECT *
+FROM gafanhotos
+WHERE nascimento BETWEEN '2000-01-01' AND '2015-12-31'
+ORDER BY nome;
+
+-- EXERCÍCIO 03
+
+-- UMA LISTA COM O NOME DE TODOS OS HOMENS QUE TRABALHAM COMO PROGRAMADORES
+
+SELECT nome,profissao,sexo
+FROM gafanhotos
+WHERE profissao = 'Programador' AND sexo = 'M'
+ORDER BY nome;
+
+-- EXERCÍCIO 04
+
+-- UMA LISTA COM OS DADOS DE TODAS AS MULHERES QUE NASCERAM NO BRASIL E QUE TEM NOME COMEÇANDO COM LETRA J
+
+SELECT *
+FROM gafanhotos
+WHERE sexo = 'F' AND nacionalidade = 'Brasil' AND nome LIKE 'J%'
+ORDER BY nome;
+
+-- EXERCÍCIO 05
+
+-- UMA LISTA COM NOME E NACIONALIDADE DE TODOS OS HOMENS QUE TEM SILVA NO NOME, NÃO NASCERAM NO BRASIL E PESAM MENOS QUE 100 KG
+
+SELECT nome,nacionalidade
+FROM gafanhotos
+WHERE sexo = 'M' AND peso < 100 AND nacionalidade != 'Brasil' AND nome LIKE '%SILVA%'
+ORDER BY nome;
+
+-- EXERCÍCIO 06
+
+-- QUAL A MAIOR ALTURA DOS HOMENS QUE MORAM NO BRASIL
+
+SELECT nome 'Nome',max(altura) 'Maior altura'
+FROM gafanhotos
+WHERE nacionalidade = 'Brasil';
+
+-- EXERCÍCIO 07
+
+-- MÉDIA DE PESO DOS CADASTRADOS
+
+SELECT avg(peso) 'Média de peso'
+FROM gafanhotos;
+
+-- EXERCÍCIO 08
+
+-- MENOR PESO ENTRE AS NASCIDAS FORA DO BRASIL ENTRE 01-01-1990 E 31-12-2000
+
+SELECT min(peso) 'Menor peso'
+FROM gafanhotos
+WHERE nacionalidade != 'Brasil' AND nascimento BETWEEN '1990-01-01' AND '2000-12-31' AND sexo = 'F';
+
+-- EXERCÍCIO 09
+
+-- QUANTAS MULHERES TEM MAIS DE 1,9 DE ALTURA
+
+SELECT count(nome)
+FROM gafanhotos
+WHERE sexo = 'F' AND altura > 1.9;
